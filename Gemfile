@@ -13,3 +13,4 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'rbflagr', '~> 1.1', '>= 1.1.12'
+gem 'digest'

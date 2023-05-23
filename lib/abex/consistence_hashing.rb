@@ -1,11 +1,11 @@
+require 'digest'
+
 module Abex
   module ConsistenceHashing
 
-
-      def self.generate_entity_id(uuid:, flag_key:)
-        # use an algorithm to create a hash using above two values
-        # and return it
-      end
+    def self.generate_entity_id(uuid:, flag_key:)
+      Digest::SHA1.hexdigest(uuid.to_s + flag_key.to_s)
+    end
 
   end
 end
