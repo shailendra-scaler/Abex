@@ -2,12 +2,12 @@ class EvaluationController < ApplicationController
   before_action :sanitize_params
 
   # Endpoint: GET /abex/evaluate
-  def index
+  def create
     render json: {success: true, data: { key: '', variant: '' }}, status: 200
   end
 
   # Endpoint: GET /abex/evaluate/batch
-  def batch
+  def batch_creatẻ
     render json: {success: true, data: [{key: '', variant: ''}, {key: '', variant: ''}]}, status: 200
   end
 
