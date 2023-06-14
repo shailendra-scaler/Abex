@@ -18,6 +18,10 @@ module Abex
   #     key: 'flag_key'
   #   }
   # }
+  # {
+  # product:
+  # flag_key
+  # }
 
   mattr_accessor :experiment_module_paths
   @@experiment_module_paths = []
