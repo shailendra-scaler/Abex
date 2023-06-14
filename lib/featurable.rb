@@ -30,11 +30,12 @@ module Featurable
     end
 
     def fetch_variant(flag_key, uuid)
-      # fetch varient from the experiment and call the evaluation method
-      entity_id = Abex::ConsistenceHashing.generate_entity_id(
-        uuid: uuid,
+      # fetch variant from the experiment and call the evaluation method
+      entity_id = ::Generators::Entity.new(
+        token: uuid,
         flag_key: flag_key
-      )
+      ).generate_id
+
       ::Abex::Evaluation.new.evaluate(
         {flag_key: flag_key, entity_id: entity_id}
       )

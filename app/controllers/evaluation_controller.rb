@@ -1,10 +1,25 @@
 class EvaluationController < ApplicationController
+  before_action :sanitize_params
 
-  def evaluate
-    # return the variant key after calculation
+  # Endpoint: GET /abex/evaluate
+  def index
+    render json: {success: true, data: { key: '', variant: '' }}, status: 200
   end
 
-  def batch_evaluate
-    # return the hash of flag_key and variant key
+  # Endpoint: GET /abex/evaluate/batch
+  def batch
+    render json: {success: true, data: [{key: '', variant: ''}, {key: '', variant: ''}]}, status: 200
+  end
+
+  private
+
+  def permitted_params
+    params.require(:key).permit(:experiment_options)
+  end
+
+  def sanitize_params
+    new_params = permitted_params
+
+    head :bad_request and return unless new_params.dig(:key).present?
   end
 end
