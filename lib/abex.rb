@@ -2,6 +2,10 @@ require "abex/engine"
 require "view_component/engine"
 
 module Abex
+  config.autoload_paths = %w[
+    #{root}/app/components
+    #{root}/app/helpers
+  ]
   #flagr server url
   mattr_accessor :flagr_host
 
@@ -43,4 +47,13 @@ module Abex
     # ::Events::Features::Constants::EXPERIMENT
   end
 
+  initializer "abex.helpers" do
+    ActiveSupport.on_load(:action_controller_base) do
+      require "polaris/view_helper"
+      helper Polaris::ViewHelper
+
+      require "polaris/url_helper"
+      helper Polaris::UrlHelper
+    end
+  end
 end
